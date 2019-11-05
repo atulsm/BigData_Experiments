@@ -1,0 +1,47 @@
+
+
+Reduce side Join :: if all the data sources are large/big , we need to write logic inside reduce()
+
+is re-partition join
+
+
+Map side Join or Replication JOIN::
+
+if one of the data set is small then we can cache the small data in the
+memory of all the data nodes and join that data with bigger data sets
+
+Distributed cache :: Whenever you copy any file in the distributed cache then 
+
+this file gets copied on the datanode on which mapper tasks are going
+
+to be executed for the bigger data.
+
+Semi Join :: it is same as map side join with one extra step of doing filtering 
+
+
+CustomerMapper :: 400001 : Key and Value : "custs	Kristina" 
+
+TxnsMapper :: 400001 : Key and value : "txns	40.35"
+400001 : Key and value : "txns	50.15"
+400001 : Key and value : "txns	30.85"
+
+Reducer :
+
+R0
+
+
+R1
+
+400001 <"txns	40.35","custs	Kristina","txns	50.15","txns	30.85">
+
+
+
+
+"Kristina" "8 1234.40"
+
+"kristina" "5% discount"
+"kristina" "10% discount"
+"kristina" "20% discount"
+
+
+
