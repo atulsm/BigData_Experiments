@@ -1,0 +1,14 @@
+Hive:
+
+create external table emp_dynamic_partition (id int,name string,city string,country string) partitioned by (continent string) row format delimited fields terminated by ',';
+insert into table emp_dynamic_partition partition(continent) select id,name,city,country,continent from fk_lobal_emp;
+select * from emp_dynamic_partition;
+
+Verify:
+
+Check the folder in hdfs:
+# hdfs dfs -ls /apps/hive/warehouse/flipkart.db/emp_dynamic_partition/
+Found 3 items
+drwxrwxrwx   - root hdfs          0 2019-11-05 08:04 /apps/hive/warehouse/flipkart.db/emp_dynamic_partition/continent=Asia
+drwxrwxrwx   - root hdfs          0 2019-11-05 08:04 /apps/hive/warehouse/flipkart.db/emp_dynamic_partition/continent=Europe
+drwxrwxrwx   - root hdfs          0 2019-11-05 08:04 /apps/hive/warehouse/flipkart.db/emp_dynamic_partition/continent=North America
