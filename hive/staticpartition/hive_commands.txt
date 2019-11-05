@@ -1,0 +1,19 @@
+Prepare:
+
+hdfs dfs -mkdir -p /employees/NorthAmericas
+hdfs dfs -mkdir -p /employees/Asian
+hdfs dfs -mkdir -p /employees/EuropeanUnion
+ 
+hdfs dfs -put emp_Americas.txt /employees/NorthAmericas
+hdfs dfs -put emp_Asia.txt /employees/Asian
+hdfs dfs -put emp_Europe.txt /employees/EuropeanUniona
+
+
+Hive commands:
+hive> create external table emp_static_partition (id int,name string,city string,country string) partitioned by (continent string) row format delimited fields terminated by ',';
+
+alter table emp_static_partition ADD partition (coninent='ASIA') location '/employees/Asian';
+alter table emp_static_partition ADD partition (continent='EUWithoutEngland') location '/employees/EU';
+alter table emp_static_partition ADD partition (continent='Americas') location '/employees/NorthAmericas';
+
+select * from emp_static_partition;

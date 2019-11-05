@@ -1,0 +1,4 @@
+9,Trump,Washingtion,USA
+10,Justin,Toronto,Canada
+11,Clinton,NYK,USA
+12,Obama,Florida,USA
